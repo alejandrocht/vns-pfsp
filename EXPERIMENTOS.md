@@ -1,5 +1,51 @@
 # Calibración de parámetros del VNS — Grupo G2
 
+## 0. El problema y el objetivo
+
+### El problema (PFSP)
+Una empresa tiene varios **trabajos** que deben pasar por varias **máquinas**, siempre en el mismo orden (M1 → M2 → … → Mm).
+Cada trabajo tarda un tiempo distinto en cada máquina. Lo único que se puede decidir es **en qué orden entran los trabajos**,
+y ese mismo orden se usa en todas las máquinas.
+
+Hay dos reglas:
+1. Un trabajo no puede empezar en una máquina hasta terminar en la anterior.
+2. Una máquina procesa un solo trabajo a la vez.
+
+### ¿Qué es el makespan?
+Es **el momento en que termina el último trabajo en la última máquina**, es decir, cuánto tarda todo el proceso.
+Se calcula con la tabla de tiempos de finalización:
+
+```
+C[i][j] = max(C[i-1][j], C[i][j-1]) + p[i][j]
+```
+
+- `C[i-1][j]`: cuándo se libera la máquina j (terminó el trabajo anterior).
+- `C[i][j-1]`: cuándo terminó este trabajo en la máquina anterior.
+- `p[i][j]`: lo que tarda este trabajo en esta máquina.
+
+El makespan es la última celda de la tabla. **Un orden distinto da un makespan distinto.**
+
+Ejemplo con la instancia 1: el orden J1-J2-J3-J4-J5 da un makespan de 57 y el orden J5-J2-J4-J3-J1 da 52.
+
+### Objetivo del algoritmo
+**Encontrar el orden de los trabajos con el menor makespan posible.**
+
+¿Por qué no probar todos los órdenes? Porque crecen muy rápido:
+
+| Trabajos | Órdenes posibles |
+|---|---|
+| 5 | 120 |
+| 10 | 3 628 800 |
+| 12 | 479 001 600 |
+
+Por eso se usa una metaheurística (VNS), que busca un orden muy bueno sin revisar todos.
+
+### Objetivo de la calibración
+VNS tiene parámetros que se eligen antes de ejecutarlo. Los experimentos de este documento sirven para
+**elegir los valores con los que VNS encuentra el menor makespan de forma confiable** y justificar esa elección con datos.
+
+---
+
 ## 1. Idea general
 
 Todos los experimentos usan **el mismo algoritmo: VNS**. Lo único que cambia es su configuración.
@@ -55,6 +101,19 @@ Se fija `fuerza=2` con búsqueda local y se cambia cuántas rondas sin mejora se
 
 ## 3. Experimento 2: fuerza del shaking (`fuerza`)
 
+### ¿Qué es la fuerza?
+Es **cuántos cambios al azar hace cada empujón (shaking)** antes de la búsqueda local.
+El tipo de cambio lo decide el vecindario de ese momento (swap, inserción o inversión).
+
+Ejemplo con swap, partiendo de J1-J2-J3-J4-J5:
+- **fuerza 1:** un intercambio → J1-**J4**-J3-**J2**-J5
+- **fuerza 2:** dos intercambios seguidos → J1-J4-J3-J2-J5 → **J5**-J4-J3-J2-**J1**
+- **fuerza 4:** cuatro intercambios seguidos → el orden queda mucho más revuelto.
+
+Si el empujón es muy suave, la búsqueda local vuelve al mismo hoyo. Si es muy fuerte, se pierde lo bueno que ya
+tenía la solución y es casi como empezar de cero. Se busca un punto medio.
+
+### Prueba
 Se fija `sinmejora=5` (un valor bajo, a propósito, para que se noten las diferencias) y se cambia la fuerza. 10 corridas por valor.
 
 | fuerza | Instancia 2: llegaron a 7720 | Instancia 3: llegaron a 7312 | Promedio inst. 3 |
