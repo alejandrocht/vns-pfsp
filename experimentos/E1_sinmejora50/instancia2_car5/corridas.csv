@@ -1,0 +1,11 @@
+corrida,semilla,makespan,tiempo_ms,iteraciones,secuencia,parametros
+1,1,7720,4.4605,51,J4-J5-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+2,2,7720,4.07004,50,J4-J5-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+3,3,7720,4.40146,56,J4-J5-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+4,4,7720,4.45142,57,J4-J5-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+5,5,7720,3.85492,52,J5-J4-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+6,6,7720,3.73042,51,J5-J2-J4-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+7,7,7720,4.92546,63,J5-J4-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+8,8,7720,3.92588,51,J4-J5-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+9,9,7720,4.03142,52,J5-J4-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
+10,10,7720,4.42162,56,J5-J4-J2-J1-J3-J8-J6-J10-J9-J7,maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria
