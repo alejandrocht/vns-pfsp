@@ -1,23 +1,23 @@
 Instancia instancia3_car3 (12 trabajos x 5 máquinas)
 Parámetros: maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria, corridas=10
 
-Corrida  1 | makespan  7312 |    7.14 ms |  51 iter | J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
-Corrida  2 | makespan  7312 |    7.05 ms |  55 iter | J11-J6-J12-J5-J9-J10-J3-J2-J4-J7-J8-J1
-Corrida  3 | makespan  7312 |   10.36 ms |  65 iter | J11-J6-J5-J10-J3-J12-J2-J9-J4-J7-J8-J1
-Corrida  4 | makespan  7312 |    6.79 ms |  52 iter | J11-J12-J6-J5-J9-J10-J3-J2-J4-J7-J8-J1
-Corrida  5 | makespan  7312 |    9.83 ms |  72 iter | J11-J12-J6-J5-J10-J9-J3-J2-J4-J7-J8-J1
-Corrida  6 | makespan  7312 |    6.56 ms |  51 iter | J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
-Corrida  7 | makespan  7312 |    6.38 ms |  51 iter | J11-J6-J12-J5-J10-J3-J2-J9-J4-J7-J8-J1
-Corrida  8 | makespan  7312 |    7.33 ms |  55 iter | J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
-Corrida  9 | makespan  7312 |    9.89 ms |  76 iter | J11-J6-J12-J5-J3-J10-J2-J9-J4-J7-J8-J1
-Corrida 10 | makespan  7312 |    7.05 ms |  52 iter | J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
+Corrida  1 | makespan  7312 |    6.28 ms |  51 iter | J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
+Corrida  2 | makespan  7312 |    6.74 ms |  55 iter | J11-J6-J12-J5-J9-J10-J3-J2-J4-J7-J8-J1
+Corrida  3 | makespan  7312 |    8.73 ms |  65 iter | J11-J6-J5-J10-J3-J12-J2-J9-J4-J7-J8-J1
+Corrida  4 | makespan  7312 |    6.24 ms |  52 iter | J11-J12-J6-J5-J9-J10-J3-J2-J4-J7-J8-J1
+Corrida  5 | makespan  7312 |    8.44 ms |  72 iter | J11-J12-J6-J5-J10-J9-J3-J2-J4-J7-J8-J1
+Corrida  6 | makespan  7312 |    6.40 ms |  51 iter | J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
+Corrida  7 | makespan  7312 |    6.09 ms |  51 iter | J11-J6-J12-J5-J10-J3-J2-J9-J4-J7-J8-J1
+Corrida  8 | makespan  7312 |    6.79 ms |  55 iter | J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
+Corrida  9 | makespan  7312 |    8.91 ms |  76 iter | J11-J6-J12-J5-J3-J10-J2-J9-J4-J7-J8-J1
+Corrida 10 | makespan  7312 |    6.05 ms |  52 iter | J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
 
 === Resumen instancia3_car3 ===
 Mejor makespan  : 7312
 Peor makespan   : 7312
 Promedio        : 7312
 Desv. estándar  : 0
-Tiempo promedio : 7.83682 ms
+Tiempo promedio : 7.06687 ms
 Mejor secuencia : J11-J6-J12-J5-J10-J9-J3-J2-J4-J7-J8-J1
 
 Archivos guardados en resultados/instancia3_car3/

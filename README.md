@@ -13,7 +13,8 @@ python3 graficos.py resultados     # requiere matplotlib
 ```
 
 ## Archivos
-- `vns.cpp`: algoritmo VNS. Escribe los CSV en `resultados/<instancia>/`.
+- `vns.cpp`: solo el algoritmo VNS (makespan, vecindarios, búsqueda local y VNS).
+- `utilidades.h`: lectura de la instancia, opciones, estadísticas y guardado de los CSV en `resultados/<instancia>/`.
   - `corridas.csv`: semilla, makespan, tiempo, iteraciones, secuencia y parámetros de cada corrida.
   - `convergencia.csv`: mejor makespan por iteración, una columna por corrida.
   - `gantt.csv`: máquina, trabajo, inicio y fin de la mejor secuencia.
