@@ -1,23 +1,23 @@
 Instancia instancia1_bas1 (5 trabajos x 4 máquinas)
 Parámetros: maxIter=200;sinMejora=50;fuerza=2;kmax=3;BL=VND(insercion+swap);inicial=aleatoria, corridas=10
 
-Corrida  1 | makespan    52 |    1.75 ms |  50 iter | J5-J2-J4-J3-J1
-Corrida  2 | makespan    52 |    2.85 ms |  50 iter | J5-J1-J4-J3-J2
-Corrida  3 | makespan    52 |    1.45 ms |  50 iter | J2-J4-J5-J3-J1
-Corrida  4 | makespan    52 |    1.17 ms |  50 iter | J2-J4-J5-J3-J1
-Corrida  5 | makespan    52 |    1.13 ms |  50 iter | J5-J1-J2-J4-J3
-Corrida  6 | makespan    52 |    1.28 ms |  50 iter | J5-J1-J2-J4-J3
-Corrida  7 | makespan    52 |    1.23 ms |  50 iter | J5-J1-J2-J4-J3
-Corrida  8 | makespan    52 |    1.47 ms |  50 iter | J2-J4-J5-J1-J3
-Corrida  9 | makespan    52 |    1.12 ms |  50 iter | J5-J2-J4-J3-J1
-Corrida 10 | makespan    52 |    1.32 ms |  50 iter | J2-J4-J5-J1-J3
+Corrida  1 | makespan    52 |    3.04 ms |  50 iter | J5-J2-J4-J3-J1
+Corrida  2 | makespan    52 |    2.31 ms |  50 iter | J5-J1-J4-J3-J2
+Corrida  3 | makespan    52 |    1.72 ms |  50 iter | J2-J4-J5-J3-J1
+Corrida  4 | makespan    52 |    1.43 ms |  50 iter | J2-J4-J5-J3-J1
+Corrida  5 | makespan    52 |    1.35 ms |  50 iter | J5-J1-J2-J4-J3
+Corrida  6 | makespan    52 |    1.36 ms |  50 iter | J5-J1-J2-J4-J3
+Corrida  7 | makespan    52 |    1.17 ms |  50 iter | J5-J1-J2-J4-J3
+Corrida  8 | makespan    52 |    1.20 ms |  50 iter | J2-J4-J5-J1-J3
+Corrida  9 | makespan    52 |    1.18 ms |  50 iter | J5-J2-J4-J3-J1
+Corrida 10 | makespan    52 |    1.09 ms |  50 iter | J2-J4-J5-J1-J3
 
 === Resumen instancia1_bas1 ===
 Mejor makespan  : 52
 Peor makespan   : 52
 Promedio        : 52
 Desv. estándar  : 0
-Tiempo promedio : 1.4787 ms
+Tiempo promedio : 1.58483 ms
 Mejor secuencia : J5-J2-J4-J3-J1
 Óptimo exacto   : 52 (J2-J4-J5-J1-J3)  -> VNS lo alcanzó
 

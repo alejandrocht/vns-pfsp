@@ -21,8 +21,8 @@ namespace fs = std::filesystem;
 
 struct Instancia {
     string nombre;
-    int n = 0, m = 0;        // trabajos y máquinas
-    vector<vector<int>> p;   // p[trabajo][máquina] = tiempo de procesamiento
+    int numTrabajos = 0, numMaquinas = 0;
+    vector<vector<int>> tiempo;   // tiempo[trabajo][máquina] = tiempo de procesamiento
 };
 
 struct Parametros {
@@ -31,7 +31,7 @@ struct Parametros {
     int maxSinMejora = 50;   // criterio de parada principal
     int fuerza = 2;          // movimientos aleatorios por shaking
     int semilla = 1;         // la corrida r usa semilla + r
-    int bl = 1;              // 1 = con búsqueda local, 0 = VNS reducido (RVNS)
+    int usarBusquedaLocal = 1;   // 1 = con búsqueda local, 0 = VNS reducido (RVNS)
     string salida = "resultados";
 };
 
@@ -51,15 +51,15 @@ Instancia leerInstancia(const string& ruta) {
     string linea, sobra;
     while (getline(archivo, linea)) {   // salta la descripción hasta la línea "n m"
         istringstream ss(linea);
-        if ((ss >> inst.n >> inst.m) && !(ss >> sobra)) break;
-        inst.n = inst.m = 0;
+        if ((ss >> inst.numTrabajos >> inst.numMaquinas) && !(ss >> sobra)) break;
+        inst.numTrabajos = inst.numMaquinas = 0;
     }
-    bool ok = inst.n > 0 && inst.m > 0;
-    inst.p.assign(inst.n, vector<int>(inst.m, 0));
-    for (int t = 0; ok && t < inst.n; t++)
-        for (int k = 0, maquina, tiempo; ok && k < inst.m; k++) {
-            ok = (archivo >> maquina >> tiempo) && maquina >= 0 && maquina < inst.m;
-            if (ok) inst.p[t][maquina] = tiempo;
+    bool ok = inst.numTrabajos > 0 && inst.numMaquinas > 0;
+    inst.tiempo.assign(inst.numTrabajos, vector<int>(inst.numMaquinas, 0));
+    for (int t = 0; ok && t < inst.numTrabajos; t++)
+        for (int k = 0, maquina, tiempo; ok && k < inst.numMaquinas; k++) {
+            ok = (archivo >> maquina >> tiempo) && maquina >= 0 && maquina < inst.numMaquinas;
+            if (ok) inst.tiempo[t][maquina] = tiempo;
         }
     if (!ok) { cerr << "Error: no se pudo leer la instancia " << ruta << "\n"; exit(1); }
     return inst;
@@ -70,7 +70,7 @@ Parametros leerOpciones(int argc, char** argv) {
     Parametros par;
     map<string, int*> opciones = {{"--corridas", &par.corridas}, {"--iter", &par.maxIter},
                                   {"--sinmejora", &par.maxSinMejora}, {"--fuerza", &par.fuerza},
-                                  {"--semilla", &par.semilla}, {"--bl", &par.bl}};
+                                  {"--semilla", &par.semilla}, {"--bl", &par.usarBusquedaLocal}};
     bool uso = argc < 2 || argc % 2 != 0;
     for (int a = 2; !uso && a < argc; a += 2) {
         string opcion = argv[a];
@@ -95,8 +95,8 @@ void guardarResultados(const Instancia& inst, const Parametros& par, const vecto
     fs::create_directories(dir);
     string parametros = "maxIter=" + to_string(par.maxIter) + ";sinMejora=" + to_string(par.maxSinMejora) +
                         ";fuerza=" + to_string(par.fuerza) + ";kmax=" + to_string(kmax) +
-                        (par.bl ? ";BL=VND(insercion+swap)" : ";BL=ninguna(RVNS)") + ";inicial=aleatoria";
-    cout << "Instancia " << inst.nombre << " (" << inst.n << " trabajos x " << inst.m << " máquinas)\n"
+                        (par.usarBusquedaLocal ? ";BL=VND(insercion+swap)" : ";BL=ninguna(RVNS)") + ";inicial=aleatoria";
+    cout << "Instancia " << inst.nombre << " (" << inst.numTrabajos << " trabajos x " << inst.numMaquinas << " máquinas)\n"
          << "Parámetros: " << parametros << ", corridas=" << par.corridas << "\n\n";
 
     // 1. Corridas y estadísticas.
@@ -132,8 +132,8 @@ void guardarResultados(const Instancia& inst, const Parametros& par, const vecto
 
     // 2. Validación: con n <= 10 se prueban todas las permutaciones (10! = 3.6 millones).
     string optimo = "NA";
-    if (inst.n <= 10) {
-        vector<int> sec(inst.n), secOptima;
+    if (inst.numTrabajos <= 10) {
+        vector<int> sec(inst.numTrabajos), secOptima;
         iota(sec.begin(), sec.end(), 0);
         int valor = calcularMakespan(inst, secOptima = sec);
         while (next_permutation(sec.begin(), sec.end())) {
@@ -160,11 +160,11 @@ void guardarResultados(const Instancia& inst, const Parametros& par, const vecto
     // 4. Gantt de la mejor secuencia: misma fórmula del makespan, guardando inicio y fin.
     ofstream fGantt(dir / "gantt.csv");
     fGantt << "maquina,trabajo,inicio,fin\n";
-    vector<int> c(inst.m, 0);
+    vector<int> c(inst.numMaquinas, 0);
     for (int trabajo : mejorSec)
-        for (int j = 0; j < inst.m; j++) {
+        for (int j = 0; j < inst.numMaquinas; j++) {
             int inicio = max(c[j], j > 0 ? c[j - 1] : 0);   // máquina libre y trabajo listo
-            c[j] = inicio + inst.p[trabajo][j];
+            c[j] = inicio + inst.tiempo[trabajo][j];
             fGantt << 'M' << j + 1 << ",J" << trabajo + 1 << ',' << inicio << ',' << c[j] << '\n';
         }
 
